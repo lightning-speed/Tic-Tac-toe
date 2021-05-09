@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kick Watch</title>
+</head>
+<style >
+	*{
+		font-family: arial;
+		font-size: 20px;
+		transition: 0.2s ease;
+	}
+
+html,body{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	
+}
+#Clock{
+	width: 100%;
+	height: 30%;
+	position:  absolute;
+	top: 20%;
+	left: 0%;
+	text-align:  center;
+	
+}
+#Watch{
+	font-size: 40px;
+}
+#st{
+	width: 13%;
+	height: 7%;
+	background-color: rgb(255,170,170);
+	border: 0px;
+	border-radius: 30px;
+	position: absolute;
+	left: 35%;
+	top: 40%;
+}
+
+#sto{
+	width: 13%;
+	height: 7%;
+	background-color: rgb(100,100,255);
+	border: 0px;
+	border-radius: 30px;
+	position: absolute;
+	left: 52%;
+	top: 40%;
+}
+#lp{
+	width: 13%;
+	height: 7%;
+	background-color: rgb(100,255,155);
+	border: 0px;
+	border-radius: 30px;
+
+	position: absolute;
+	left: 35%;
+	top: 50%;
+}
+#cl{
+	width: 13%;
+	height: 7%;
+	background-color: rgb(255,255,155);
+	border: 0px;
+	border-radius: 30px;
+	position: absolute;
+	left: 52%;
+	top: 50%;
+}
+#st:hover{
+	border: 3px solid red;
+	background-color: white;
+}
+#cl:hover{
+	border: 3px solid red;
+	background-color: white;
+}
+#sto:hover{
+	border: 3px solid red;
+	background-color: white;
+}
+#lp:hover{
+	border: 3px solid red;
+	background-color: white;
+}
+#lape{
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	top:60%;
+	text-align: center;
+	font-size: 25px;
+}
+#abc{
+	font-size: 50px;
+	font-family: arial;
+	font-weight: bold;
+	text-align: center;
+}
+</style>
+<script>
+	var ms = 0;
+	var s = 0;
+	var m = 0;
+	var h = 0;
+    var as = "";
+   var  a;
+	function start(){
+		stop();
+      a = setInterval(count,1000);
+
+	}
+	function count(){
+       s++;
+       if(s==60){
+       	s = 0;
+       	m++;
+       }
+       if(m==60){
+       	m=0;
+       	h++;
+       }
+       
+       as=h+" : "+m+" : "+s;
+       Watch.innerHTML=as;
+	}
+	function stop(){
+		clearInterval(a);
+	}
+	function lap(){
+     var le = "";
+     le=h+" : "+m+" : "+s+"<br>";
+     lape.innerHTML+=le;
+	}
+	function clearA(){
+		stop();
+		m=0;
+		ms=0;
+		s=0;
+		h=0;
+		lape.innerHTML="";
+		Watch.innerHTML="00 : 00 : 00";
+	}
+</script>
+
+<body>
+	<p id="abc">KICKWATCH</p>
+<div id="Clock">
+	<p id="Watch">00 : 00 : 00</p>
+</div>
+<div id="lape"></div>
+<input type="Button" id="st" value="START"onclick="start()">
+<input type="Button" id="sto" value="STOP"onclick="stop()">
+<input type="Button" id="lp" value="LAP"onclick="lap()">
+<input type="Button" id="cl" value="CLEAR"onclick="clearA()">
+</body>
+</html>
